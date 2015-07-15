@@ -1,0 +1,20 @@
+Package: TeaPlots
+Type: Package
+Title: Automatically renders reports about weather in Tea growing regions
+Version: 0.1.0
+Date: 2015-07-15
+Author: Matthew Upson
+Maintainer: Matthew Upson <ivyleavedtoadflax@gmail.com>
+Description: More about what it does (maybe more than one line)
+License: What license is it under?
+Depends:
+    R (>= 3.2.0),
+    dplyr,
+    readr,
+    magrittr,
+    lubridate,
+    readr,
+    tidyr,
+    ggmap,
+    ggplot2
+
