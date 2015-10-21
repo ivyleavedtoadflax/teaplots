@@ -32,9 +32,28 @@ make_plot <- function(x) {
      title_text <- paste(i, ", ", unique(x$Country), sep = "") %>% tolower
      title_text <- gsub("\\b([a-z])([a-z]+)", "\\U\\1\\L\\2", title_text, perl = TRUE)
      
+     x_PRCP <- x %>%
+       dplyr::filter(KEY == "PRCP")
+     
+#      if (nrows(x_PRCP) == 0) {
+#       
+#        x_PRCP$VALUE_mean <- rep(0 
+#        
+#      }
+     
+     x_MIN <- x %>%
+       dplyr::filter(KEY == "MIN")
+     
+     x_TEMP <- x %>%
+       dplyr::filter(KEY == "TEMP")
+     
+     x_MAX <- x %>%
+       dplyr::filter(KEY == "MAX")
+
+          
      b <- barplot(
-          names.arg = x$MONTH,
-          height = x$PRCP_mean,
+          names.arg = x_PRCP$MONTH,
+          height = x_PRCP$VALUE1_mean,
           border = FALSE,
           ylim = c(0,600),
           ylab = expression(Temperature~(degree~C)),
@@ -47,8 +66,8 @@ make_plot <- function(x) {
      
      se_lines(
           x = b,
-          SE = x$PRCP_sd,
-          y = x$PRCP_mean
+          SE = x_PRCP$VALUE1_sd,
+          y = x_PRCP$VALUE1_mean
      )
      
      axis(
@@ -63,17 +82,17 @@ make_plot <- function(x) {
      
      points(
           x = b,
-          y = x$MIN_mean * conversion ,
+          y = x_MIN$VALUE1_mean * conversion ,
           pch = 1
      )
      points(
           x = b,
-          y = x$TEMP_mean * conversion ,
+          y = x_TEMP$VALUE1_mean * conversion ,
           pch = 16
      )
      points(
           x = b,
-          y = x$MAX_mean * conversion ,
+          y = x_MAX$VALUE1_mean * conversion ,
           pch = 1
      )
      
@@ -81,18 +100,18 @@ make_plot <- function(x) {
      
      TeaPlots::se_lines(
           x = b,
-          SE = x$MIN_sd * conversion ,
-          y = x$MIN_mean * conversion 
+          SE = x_MIN$VALUE1_sd * conversion ,
+          y = x_MIN$VALUE1_mean * conversion 
      )
      TeaPlots::se_lines(
           x = b,
-          SE = x$MAX_sd * conversion ,
-          y = x$MAX_mean * conversion 
+          SE = x_MAX$VALUE1_sd * conversion ,
+          y = x_MAX$VALUE1_mean * conversion 
      )
      TeaPlots::se_lines(
           x = b,
-          SE = x$TEMP_sd * conversion ,
-          y = x$TEMP_mean * conversion 
+          SE = x_TEMP$VALUE1_sd * conversion ,
+          y = x_TEMP$VALUE1_mean * conversion 
      )
      
      axis(
