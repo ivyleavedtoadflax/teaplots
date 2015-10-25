@@ -29,11 +29,21 @@ make_plot <- function(x) {
           cex = 1.2
      )
      
-     title_text <- paste(i, ", ", unique(x$Country), sep = "") %>% tolower
-     title_text <- gsub("\\b([a-z])([a-z]+)", "\\U\\1\\L\\2", title_text, perl = TRUE)
+     title_text <- paste(i, ", ", unique(x$Country), sep = "")
+     title_text <- sent_case(title_text)
      
      x_PRCP <- x %>%
        dplyr::filter(KEY == "PRCP")
+     
+     if (nrow(x_PRCP) == 0) {
+       
+       x_PRCP %>% 
+         mutate(
+           MONTH = month(1:12, label = TRUE, abbr = TRUE),
+           VALUE1_mean = 0,
+           VALUE1_sd = 0
+           )
+     }
      
 #      if (nrows(x_PRCP) == 0) {
 #       
