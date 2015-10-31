@@ -19,7 +19,8 @@ se_lines <- function(
      x, 
      SE, 
      y, 
-     bar_width = 0.1
+     bar_width = 0.1,
+     color = "black"
 ) {
      
      #SE = 0.5 * SE
@@ -27,17 +28,20 @@ se_lines <- function(
      for (i in 1:length(x)) {
           lines(
                c(x[i],x[i]),
-               c(y[i]+SE[i],y[i]-SE[i])
+               c(y[i]+SE[i],y[i]-SE[i]),
+               col = color
           )
           
           lines(
                c(x[i]-bar_width,x[i]+bar_width),
-               c(y[i]+SE[i],y[i]+SE[i])
+               c(y[i]+SE[i],y[i]+SE[i]),
+               col = color
           )
           
           lines(
                c(x[i]-bar_width,x[i]+bar_width),
-               c(y[i]-SE[i],y[i]-SE[i])
+               c(y[i]-SE[i],y[i]-SE[i]),
+               col = color
           )
      }
 }

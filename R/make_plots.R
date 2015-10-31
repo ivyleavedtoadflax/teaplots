@@ -37,19 +37,13 @@ make_plot <- function(x) {
      
      if (nrow(x_PRCP) == 0) {
        
-       x_PRCP %>% 
-         mutate(
-           MONTH = month(1:12, label = TRUE, abbr = TRUE),
-           VALUE1_mean = 0,
-           VALUE1_sd = 0
-           )
+       x_PRCP <- data.frame(
+         MONTH = month(1:12, label = TRUE, abbr = TRUE),
+         VALUE1_mean = 0,
+         VALUE1_sd = 0
+       )
+
      }
-     
-#      if (nrows(x_PRCP) == 0) {
-#       
-#        x_PRCP$VALUE_mean <- rep(0 
-#        
-#      }
      
      x_MIN <- x %>%
        dplyr::filter(KEY == "MIN")
@@ -77,7 +71,8 @@ make_plot <- function(x) {
      se_lines(
           x = b,
           SE = x_PRCP$VALUE1_sd,
-          y = x_PRCP$VALUE1_mean
+          y = x_PRCP$VALUE1_mean,
+          color = "lightsteelblue4"
      )
      
      axis(
