@@ -1,16 +1,15 @@
 #' @title make_plot
 #'
-#' @description \code{make_plot} Count number of zeros within a vector
+#' @description \code{make_plot} a plot for a tea growing region
+#' @details This function takes a dataframe `x` and creates plots plots based on that data
 #'
-#' @details This functions counts the number of zeros in a vector
+#' @param x A dataframe of weather data
 #'
-#' @param x A vector
-#'
-#' @return numeric vector of length 1 giving number of zero values in vector \code{x}.
+#' @return A plot.
 #'
 #' @examples
 #'
-#' a <- cbind(1:10,0)
+#' library(teaplots)
 #' make_plot(x)
 #' 
 #' @import dplyr
